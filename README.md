@@ -24,3 +24,7 @@
 ## Team Information
 * Name: Dinh Ngoc Hoa
 * Student ID: 524K0031
+* Link Figma: https://www.figma.com/design/rfbNnqe6SRQoA9AJRGwlYE/Ticket-Vendor-Machine?node-id=0-1
+
+## How To Run
+Download the Demo -> Open and click the .sln file or .csproj file
