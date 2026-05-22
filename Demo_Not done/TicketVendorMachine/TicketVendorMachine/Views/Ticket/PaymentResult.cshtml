@@ -1,0 +1,76 @@
+@model PaymentResultViewModel
+@{
+    ViewData["Title"] = Model.IsSuccess ? "Thanh toán thành công" : "Thanh toán thất bại";
+    ViewData["Step"] = "4";
+}
+
+<div class="page-wrapper narrow">
+    @if (Model.IsSuccess && Model.Ticket != null)
+    {
+        <div class="result-success">
+            <div class="result-icon success-icon">✅</div>
+            <h1 class="result-title">Thanh toán thành công!</h1>
+            <p class="result-sub">Vé của bạn đã được phát hành. Vui lòng lấy vé tại khe in.</p>
+        </div>
+
+        <div class="ticket-receipt">
+            <div class="receipt-header">
+                <div class="receipt-logo">🚇 SMART TVM</div>
+                <div class="receipt-date">@Model.Ticket.CreatedAt.ToString("dd/MM/yyyy HH:mm")</div>
+            </div>
+            <div class="receipt-divider dashed"></div>
+            <div class="receipt-row">
+                <span>Mã vé</span>
+                <strong class="ticket-code-text">@Model.Ticket.TicketCode</strong>
+            </div>
+            <div class="receipt-row">
+                <span>Phương tiện</span>
+                <strong>@(Model.Ticket.TransportType == "Bus" ? "🚌" : Model.Ticket.TransportType == "Metro" ? "🚇" : "🚆") @Model.Ticket.TransportType</strong>
+            </div>
+            <div class="receipt-row">
+                <span>Điểm đi</span>
+                <strong>@Model.Ticket.Origin</strong>
+            </div>
+            <div class="receipt-row">
+                <span>Điểm đến</span>
+                <strong>@Model.Ticket.Destination</strong>
+            </div>
+            <div class="receipt-row">
+                <span>Loại vé</span>
+                <strong>@(Model.Ticket.PassengerType == "Student" ? "🎓 Học sinh/SV" : "👤 Thường")</strong>
+            </div>
+            <div class="receipt-row">
+                <span>Thanh toán qua</span>
+                <strong>@Model.Transaction?.PaymentProvider</strong>
+            </div>
+            <div class="receipt-divider dashed"></div>
+            <div class="receipt-row total-row">
+                <span>Tổng tiền</span>
+                <strong class="total-amount">@Model.Ticket.Price.ToString("N0") VNĐ</strong>
+            </div>
+        </div>
+
+        <div class="print-notice">
+            <div class="print-anim">🖨️</div>
+            <p>Vé đang được in... Vui lòng lấy vé tại khe bên dưới màn hình.</p>
+        </div>
+
+        <div class="action-row centered">
+            <a href="/" class="btn-primary">🏠 Về trang chủ</a>
+            <a href="/Ticket/SelectRoute" class="btn-outline">🎟️ Mua vé khác</a>
+        </div>
+    }
+    else
+    {
+        <div class="result-failed">
+            <div class="result-icon failed-icon">❌</div>
+            <h1 class="result-title">Thanh toán thất bại</h1>
+            <p class="result-sub">@(Model.ErrorMessage ?? "Đã xảy ra lỗi trong quá trình thanh toán.")</p>
+        </div>
+
+        <div class="action-row centered">
+            <a href="/Ticket/SelectRoute" class="btn-primary">🔄 Thử lại</a>
+            <a href="/" class="btn-outline">🏠 Về trang chủ</a>
+        </div>
+    }
+</div>

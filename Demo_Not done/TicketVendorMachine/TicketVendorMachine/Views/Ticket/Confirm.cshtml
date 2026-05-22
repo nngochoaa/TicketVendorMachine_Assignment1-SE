@@ -1,0 +1,56 @@
+@model ConfirmTicketViewModel
+@{
+    ViewData["Title"] = "Xác nhận vé";
+    ViewData["Step"] = "2";
+}
+
+<div class="page-wrapper narrow">
+    <div class="page-header">
+        <h1 class="page-title">Xác nhận thông tin vé</h1>
+        <p class="page-sub">Kiểm tra và xác nhận thông tin trước khi thanh toán</p>
+    </div>
+
+    <div class="ticket-preview">
+        <div class="ticket-header-band">
+            <span>@(Model.TransportType == "Bus" ? "🚌" : Model.TransportType == "Metro" ? "🚇" : "🚆") @Model.TransportType</span>
+            <span class="ticket-type-badge @Model.PassengerType.ToLower()">
+                @(Model.PassengerType == "Student" ? "🎓 Học sinh/SV" : "👤 Thường")
+            </span>
+        </div>
+        <div class="ticket-body">
+            <div class="ticket-journey">
+                <div class="journey-point">
+                    <div class="point-label">ĐIỂM ĐI</div>
+                    <div class="point-name">@Model.Origin</div>
+                </div>
+                <div class="journey-arrow">
+                    <div class="arrow-line"></div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <div class="journey-point">
+                    <div class="point-label">ĐIỂM ĐẾN</div>
+                    <div class="point-name">@Model.Destination</div>
+                </div>
+            </div>
+            <div class="ticket-price-display">
+                <span class="price-label">Giá vé</span>
+                <span class="price-amount">@Model.Price.ToString("N0") <small>VNĐ</small></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="passenger-switch">
+        <p>Đổi loại vé:</p>
+        <div class="toggle-group">
+            <a href="/Ticket/Confirm?routeId=@Model.RouteId&passengerType=Normal"
+               class="toggle-btn @(Model.PassengerType == "Normal" ? "active" : "")">👤 Thường</a>
+            <a href="/Ticket/Confirm?routeId=@Model.RouteId&passengerType=Student"
+               class="toggle-btn @(Model.PassengerType == "Student" ? "active" : "")">🎓 Học sinh/SV</a>
+        </div>
+    </div>
+
+    <div class="action-row">
+        <a href="/Ticket/SelectRoute" class="btn-outline">← Quay lại</a>
+        <a href="/Ticket/SelectPayment?routeId=@Model.RouteId&passengerType=@Model.PassengerType" class="btn-primary">Tiếp theo: Thanh toán →</a>
+    </div>
+</div>

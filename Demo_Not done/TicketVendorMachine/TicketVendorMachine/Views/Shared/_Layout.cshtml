@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Smart Ticket Vendor Machine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <span class="logo-icon">🚇</span>
+                <div>
+                    <div class="logo-title">SMART TVM</div>
+                    <div class="logo-sub">Ticket Vendor Machine</div>
+                </div>
+            </a>
+            <nav class="header-nav">
+                <a href="/" class="nav-link">Trang chủ</a>
+                <a href="/Ticket/SelectRoute" class="nav-link nav-cta">Mua vé</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="step-progress" id="stepProgress" style="display:none">
+        <div class="step @(ViewData["Step"] as string == "1" ? "active" : (int.Parse(ViewData["Step"] as string ?? "0") > 1 ? "done" : ""))">
+            <span class="step-num">1</span><span class="step-label">Chọn tuyến</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step @(ViewData["Step"] as string == "2" ? "active" : (int.Parse(ViewData["Step"] as string ?? "0") > 2 ? "done" : ""))">
+            <span class="step-num">2</span><span class="step-label">Xác nhận</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step @(ViewData["Step"] as string == "3" ? "active" : (int.Parse(ViewData["Step"] as string ?? "0") > 3 ? "done" : ""))">
+            <span class="step-num">3</span><span class="step-label">Thanh toán</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step @(ViewData["Step"] as string == "4" ? "active" : "")">
+            <span class="step-num">4</span><span class="step-label">Hoàn tất</span>
+        </div>
+    </div>
+
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div>© 2025 Smart Ticket Vendor Machine System · Ho Chi Minh City Metro</div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

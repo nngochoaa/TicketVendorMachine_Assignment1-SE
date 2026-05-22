@@ -1,0 +1,60 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TicketVendorMachine
+build_property.RootNamespace = TicketVendorMachine
+build_property.ProjectDir = D:\Ngọc Hoa\SE\Assignment1\Demo_Not done\TicketVendorMachine\TicketVendorMachine\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Ngọc Hoa\SE\Assignment1\Demo_Not done\TicketVendorMachine\TicketVendorMachine
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/Ticket/Confirm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XENvbmZpcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/Ticket/Payment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFBheW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/Ticket/PaymentResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFBheW1lbnRSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/Ticket/SelectPayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFNlbGVjdFBheW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/Ticket/SelectRoute.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0XFNlbGVjdFJvdXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ngọc Hoa/SE/Assignment1/Demo_Not done/TicketVendorMachine/TicketVendorMachine/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

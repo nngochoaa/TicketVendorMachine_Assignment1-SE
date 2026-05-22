@@ -1,0 +1,56 @@
+@model SelectPaymentViewModel
+@{
+    ViewData["Title"] = "Chọn phương thức thanh toán";
+    ViewData["Step"] = "3";
+    var routeId = Context.Request.Query["routeId"].ToString();
+    var passengerType = Context.Request.Query["passengerType"].ToString();
+    var amount = TempData.Peek("Amount")?.ToString() ?? "0";
+}
+
+<div class="page-wrapper narrow">
+    <div class="page-header">
+        <h1 class="page-title">Phương thức thanh toán</h1>
+        <p class="page-sub">Chọn cách thanh toán phù hợp với bạn</p>
+    </div>
+
+    <div class="amount-display">
+        <span>Số tiền cần thanh toán:</span>
+        <strong>@decimal.Parse(amount).ToString("N0") VNĐ</strong>
+    </div>
+
+    <div class="payment-options">
+
+        <div class="payment-section">
+            <form method="post" action="/Ticket/Payment">
+                <input type="hidden" name="paymentMethod" value="QRCode" />
+                <input type="hidden" name="provider" value="VietQR" />
+                <button type="submit" class="payment-btn vietqr-btn">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M17 14h3M14 17v3"/></svg>
+                    <div>
+                        <div>Thanh toán VietQR</div>
+                        <small>Quét mã bằng app ngân hàng bất kỳ</small>
+                    </div>
+                </button>
+            </form>
+        </div>
+
+        <div class="payment-section">
+            <form method="post" action="/Ticket/Payment">
+                <input type="hidden" name="paymentMethod" value="CreditCard" />
+                <input type="hidden" name="provider" value="Bank" />
+                <button type="submit" class="payment-btn card-btn">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    <div>
+                        <div>Thanh toán bằng thẻ</div>
+                        <small>Visa, MasterCard, ATM nội địa</small>
+                    </div>
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="action-row">
+        <a href="/Ticket/Confirm?routeId=@routeId&passengerType=@passengerType" class="btn-outline">← Quay lại</a>
+    </div>
+</div>

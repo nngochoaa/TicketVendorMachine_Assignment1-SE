@@ -1,0 +1,82 @@
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-badge">HO CHI MINH CITY · METRO SYSTEM</div>
+        <h1 class="hero-title">SMART TICKET<br><span class="hero-accent">VENDOR MACHINE</span></h1>
+        <p class="hero-desc">Mua vé xe buýt, metro, MRT nhanh chóng & tiện lợi.<br>Hỗ trợ thanh toán QR, thẻ tín dụng và tiền mặt.</p>
+        <a href="/Ticket/SelectRoute" class="btn-hero">
+            <span>Bắt đầu mua vé</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+    <div class="hero-visual">
+        <div class="machine-mockup">
+            <div class="machine-screen">
+                <div class="screen-content">
+                    <div class="screen-icon">🚇</div>
+                    <div class="screen-text">READY</div>
+                    <div class="screen-sub">Touch to start</div>
+                </div>
+            </div>
+            <div class="machine-body">
+                <div class="machine-slot">TICKET</div>
+                <div class="machine-buttons">
+                    <div class="m-btn"></div>
+                    <div class="m-btn"></div>
+                    <div class="m-btn accent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="features">
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🗺️</div>
+            <h3>Chọn tuyến đường</h3>
+            <p>Bus, Metro, MRT - tất cả các tuyến trong thành phố</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎟️</div>
+            <h3>Loại vé đa dạng</h3>
+            <p>Vé thường, vé học sinh - sinh viên với giá ưu đãi</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Thanh toán QR</h3>
+            <p>MoMo, ZaloPay, VNPay - quét mã trong vài giây</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💳</div>
+            <h3>Thẻ & tiền mặt</h3>
+            <p>Chấp nhận thẻ ATM, tín dụng và tiền mặt</p>
+        </div>
+    </div>
+</section>
+
+<section class="transport-types">
+    <h2 class="section-title">Phương tiện công cộng</h2>
+    <div class="transport-grid">
+        <a href="/Ticket/SelectRoute?transport=Bus" class="transport-card">
+            <div class="transport-icon">🚌</div>
+            <div class="transport-name">XE BUÝT</div>
+            <div class="transport-price">Từ 6.000đ</div>
+        </a>
+        <a href="/Ticket/SelectRoute?transport=Metro" class="transport-card featured">
+            <div class="transport-icon">🚇</div>
+            <div class="transport-name">METRO</div>
+            <div class="transport-price">Từ 12.000đ</div>
+            <div class="transport-tag">PHỔ BIẾN</div>
+        </a>
+        <a href="/Ticket/SelectRoute?transport=MRT" class="transport-card">
+            <div class="transport-icon">🚆</div>
+            <div class="transport-name">MRT</div>
+            <div class="transport-price">Từ 25.000đ</div>
+        </a>
+    </div>
+</section>

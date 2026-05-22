@@ -1,0 +1,131 @@
+@model PaymentViewModel
+@{
+    ViewData["Title"] = "Xử lý thanh toán";
+    ViewData["Step"] = "3";
+}
+
+<div class="page-wrapper narrow">
+    <div class="page-header">
+        <h1 class="page-title">
+            @if (Model.PaymentMethod == "QRCode")
+            {
+                <text>📱 Quét mã QR để thanh toán</text>
+            }
+            else if (Model.PaymentMethod == "CreditCard")
+            {
+                <text>💳 Thanh toán bằng thẻ</text>
+            }
+            else
+            {
+                <text>🏦 Chuyển khoản ngân hàng</text>
+            }
+        </h1>
+    </div>
+
+    <div class="payment-processing-card">
+        <div class="txn-info">
+            <span>Mã giao dịch:</span>
+            <strong>@Model.TransactionCode</strong>
+        </div>
+        <div class="txn-amount">
+            @Model.Amount.ToString("N0") <small>VNĐ</small>
+        </div>
+
+        @if (Model.PaymentMethod == "QRCode" && !string.IsNullOrEmpty(Model.QRCodeBase64))
+        {
+            <div class="qr-section">
+                <div class="qr-provider-badge @Model.Provider?.ToLower()">@Model.Provider</div>
+                <div class="qr-frame">
+                    <img src="data:image/png;base64,@Model.QRCodeBase64" alt="QR Code" class="qr-image" />
+                </div>
+                <p class="qr-instruction">
+                    @if (Model.Provider == "VietQR")
+                    {
+                        <text>Quét mã bằng app ngân hàng bất kỳ · BIDV <strong>8873031519</strong></text>
+                    }
+                    else
+                    {
+                        <text>Mở app <strong>@Model.Provider</strong> và quét mã QR này</text>
+                    }
+                </p>
+                <div class="qr-timer" id="qrTimer">Hết hạn sau: <span id="countdown">05:00</span></div>
+            </div>
+        }
+        else if (Model.PaymentMethod == "CreditCard")
+        {
+            <div class="card-instruction">
+                <div class="card-slot-anim">
+                    <div class="card-icon">💳</div>
+                    <div class="slot-bar">
+                        <div class="slot-line"></div>
+                        <span>← Nhét thẻ vào đây</span>
+                    </div>
+                </div>
+                <p>Vui lòng nhét thẻ vào khe đọc thẻ của máy</p>
+            </div>
+        }
+        else
+        {
+            <div class="transfer-instruction">
+                <div class="bank-info-card">
+                    <div class="bank-logo-row">
+                        <span class="bank-badge">BIDV</span>
+                        <span class="bank-name">Ngân hàng TMCP Đầu tư và Phát triển VN</span>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span>Số tài khoản</span>
+                        <strong class="copyable" onclick="copyText('8873031519', this)">8873031519 📋</strong>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span>Tên tài khoản</span>
+                        <strong>SMART TVM</strong>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span>Số tiền</span>
+                        <strong class="highlight-amount">@Model.Amount.ToString("N0") VNĐ</strong>
+                    </div>
+                    <div class="bank-detail-row">
+                        <span>Nội dung CK</span>
+                        <strong class="copyable" onclick="copyText('@Model.TransactionCode', this)">@Model.TransactionCode 📋</strong>
+                    </div>
+                </div>
+                <p class="transfer-note">⚠️ Vui lòng nhập đúng nội dung chuyển khoản để hệ thống xác nhận tự động</p>
+            </div>
+        }
+
+        <div class="payment-actions">
+            <form method="post" action="/Ticket/ConfirmPayment">
+                <input type="hidden" name="ticketId" value="@Model.TicketId" />
+                <input type="hidden" name="transactionCode" value="@Model.TransactionCode" />
+                <button type="submit" class="btn-primary btn-confirm-payment">
+                    ✅ Xác nhận đã thanh toán
+                </button>
+            </form>
+            <a href="javascript:history.back()" class="btn-outline">← Đổi phương thức</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+const countdownEl = document.getElementById('countdown');
+if (countdownEl) {
+    let seconds = 300;
+    const timer = setInterval(() => {
+        seconds--;
+        const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+        const s = (seconds % 60).toString().padStart(2, '0');
+        countdownEl.textContent = `${m}:${s}`;
+        if (seconds <= 0) { clearInterval(timer); countdownEl.textContent = 'Hết hạn'; countdownEl.style.color = 'red'; }
+    }, 1000);
+}
+
+function copyText(text, el) {
+    navigator.clipboard.writeText(text).then(() => {
+        const orig = el.textContent;
+        el.textContent = '✅ Đã sao chép!';
+        setTimeout(() => el.textContent = orig, 2000);
+    });
+}
+</script>
+}

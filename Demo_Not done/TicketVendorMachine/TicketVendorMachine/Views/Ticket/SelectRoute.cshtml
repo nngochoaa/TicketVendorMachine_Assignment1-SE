@@ -1,0 +1,73 @@
+@model SelectRouteViewModel
+@{
+    ViewData["Title"] = "Chọn tuyến đường";
+    ViewData["Step"] = "1";
+}
+
+<div class="page-wrapper">
+    <div class="page-header">
+        <h1 class="page-title">Chọn tuyến đường</h1>
+        <p class="page-sub">Chọn phương tiện và điểm đến của bạn</p>
+    </div>
+
+    <div class="transport-filter">
+        <a href="/Ticket/SelectRoute" class="filter-btn @(string.IsNullOrEmpty(Model.SelectedTransport) ? "active" : "")">Tất cả</a>
+        @foreach (var t in Model.TransportTypes)
+        {
+            <a href="/Ticket/SelectRoute?transport=@t" class="filter-btn @(Model.SelectedTransport == t ? "active" : "")">
+                @(t == "Bus" ? "🚌 " : t == "Metro" ? "🚇 " : "🚆 ")@t
+            </a>
+        }
+    </div>
+
+    <div class="passenger-type-select">
+        <label class="section-label">Loại vé:</label>
+        <div class="toggle-group" id="passengerToggle">
+            <button class="toggle-btn active" data-val="Normal" onclick="setPassenger(this, 'Normal')">
+                👤 Thường
+            </button>
+            <button class="toggle-btn" data-val="Student" onclick="setPassenger(this, 'Student')">
+                🎓 Học sinh / SV
+            </button>
+        </div>
+        <input type="hidden" id="passengerType" value="Normal" />
+    </div>
+
+    <div class="routes-grid">
+        @foreach (var route in Model.Routes)
+        {
+            <div class="route-card" onclick="selectRoute(@route.Id)">
+                <div class="route-transport @route.TransportType.ToLower()">
+                    @(route.TransportType == "Bus" ? "🚌" : route.TransportType == "Metro" ? "🚇" : "🚆")
+                    @route.TransportType
+                </div>
+                <div class="route-name">@route.Name</div>
+                <div class="route-path">
+                    <span class="route-origin">@route.Origin</span>
+                    <span class="route-arrow">→</span>
+                    <span class="route-dest">@route.Destination</span>
+                </div>
+                <div class="route-prices">
+                    <div class="price-normal">Thường: <strong>@route.Price.ToString("N0")đ</strong></div>
+                    <div class="price-student">SV: <strong>@route.StudentPrice.ToString("N0")đ</strong></div>
+                </div>
+                <div class="route-select-btn">Chọn tuyến này →</div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+<script>
+function setPassenger(btn, val) {
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('passengerType').value = val;
+}
+
+function selectRoute(routeId) {
+    const passengerType = document.getElementById('passengerType').value;
+    window.location.href = `/Ticket/Confirm?routeId=${routeId}&passengerType=${passengerType}`;
+}
+</script>
+}
